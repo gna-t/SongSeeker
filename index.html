@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SongSeeker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-noise" aria-hidden="true"></div>
+  <div class="app-shell">
+    <header class="topbar">
+      <p class="eyebrow">SongSeeker</p>
+      <h1>SongSeeker</h1>
+      <p class="tagline">
+        Discover music like never before with one cassette-loaded recommendation at a time.
+      </p>
+    </header>
+
+    <main class="app-main">
+      <section class="vibe-row" aria-label="Filter by vibe">
+        <button class="vibe-button active" data-vibe="chill">chill</button>
+        <button class="vibe-button" data-vibe="gym">gym</button>
+        <button class="vibe-button" data-vibe="focus">focus</button>
+        <button class="vibe-button" data-vibe="sad">sad</button>
+        <button class="vibe-button" data-vibe="party">party</button>
+      </section>
+
+      <section class="player-shell">
+        <div class="loading-overlay hidden" id="loadingOverlay" aria-live="polite">
+          <div class="loading-disc"></div>
+          <p>loading tape</p>
+        </div>
+
+        <article class="cassette" id="cassette">
+          <div class="cassette-screws" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="cassette-header">
+            <div>
+              <p class="label-kicker">current vibe</p>
+              <p class="cassette-vibe" id="cassetteVibe">chill</p>
+            </div>
+            <span class="source-badge" id="sourceBadge">demo mode</span>
+          </div>
+
+          <div class="cassette-label">
+            <div class="label-lines" aria-hidden="true">
+              <span></span>
+              <span></span>
+            </div>
+            <div class="track-copy">
+              <p class="track-title" id="trackTitle">Loading a song...</p>
+              <p class="track-artist" id="trackArtist">SongSeeker</p>
+              <p class="track-meta" id="trackMeta">genre / preview status</p>
+            </div>
+          </div>
+
+          <div class="tape-window">
+            <div class="reel reel-left">
+              <div class="reel-core"></div>
+            </div>
+            <div class="window-center">
+              <div class="tape-run tape-run-left"></div>
+              <div class="tape-progress-frame">
+                <div class="tape-progress-bar" id="tapeProgressBar"></div>
+                <p id="progressText">00:00 / 00:30</p>
+              </div>
+              <div class="tape-run tape-run-right"></div>
+            </div>
+            <div class="reel reel-right">
+              <div class="reel-core"></div>
+            </div>
+          </div>
+
+          <div class="song-panel">
+            <div class="song-panel-row">
+              <span class="pill" id="genrePill">genre</span>
+              <span class="pill pill-soft" id="previewPill">demo mode</span>
+            </div>
+            <p class="recommendation-reason" id="recommendationReason">
+              Because you are exploring mellow finds.
+            </p>
+          </div>
+        </article>
+
+        <section class="song-actions" aria-label="Song actions">
+          <button class="action-button action-save" id="saveButton">save</button>
+          <button class="action-button" id="skipButton">skip</button>
+          <button class="action-button action-primary" id="playButton">play preview</button>
+          <button class="action-button" id="randomButton">next random song</button>
+        </section>
+
+        <div class="volume-control" aria-label="Volume control">
+          <label class="volume-label" for="volumeSlider">volume</label>
+          <input
+            id="volumeSlider"
+            class="volume-slider"
+            type="range"
+            min="0"
+            max="100"
+            value="70"
+          />
+          <span class="volume-value" id="volumeValue">70%</span>
+        </div>
+      </section>
+
+      <section class="saved-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Saved songs</p>
+            <h2>Your tape finds</h2>
+          </div>
+          <p class="saved-count" id="savedCount">0 saved</p>
+        </div>
+
+        <div class="saved-grid" id="savedGrid" aria-live="polite"></div>
+      </section>
+    </main>
+  </div>
+
+  <audio id="audioPlayer" preload="none"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
